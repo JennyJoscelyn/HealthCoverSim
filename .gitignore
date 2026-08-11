@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local development files
+backend/node_modules/
+*.db
+*.sqlite
+*.save
+*.backup
