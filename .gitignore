@@ -29,3 +29,4 @@ backend/node_modules/
 *.sqlite
 *.save
 *.backup
+.env
