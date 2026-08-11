@@ -94,34 +94,51 @@ return "";
 
 };
 
-const handleSubmit = (event) => {
-event.preventDefault();
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-setError("");
-setMessage("");
-setQuoteResult(null);
+  setError("");
+  setMessage("");
+  setQuoteResult(null);
 
-const validationError = validateForm();
+  const validationError = validateForm();
 
-if (validationError) {
-  setError(validationError);
-  return;
-}
+  if (validationError) {
+    setError(validationError);
+    return;
+  }
 
-try {
-  const result = calculatePremium(formData);
+  try {
+    const result = calculatePremium(formData);
 
-  console.log("Quote calculated:", result);
+    console.log("Quote calculated:", result);
 
-  setQuoteResult(result);
-  setMessage("Quote calculated successfully.");
-} catch (calculationError) {
-  console.error("Calculation error:", calculationError);
-  setError(
-    "Unable to calculate the quote. Please check your inputs."
-  );
-}
+    const response = await fetch("http://localhost:5000/api/quotes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Unable to save quote.");
+    }
+
+    console.log("Quote saved:", data);
+
+    setQuoteResult(result);
+    setMessage("Quote calculated and saved successfully.");
+  } catch (error) {
+    console.error("Quote error:", error);
+
+    setError(
+      error.message ||
+        "Unable to calculate or save the quote. Please try again."
+    );
+  }
 };
 
 return ( <div className="app"> <header className="header"> <h1>HealthCoverSim</h1> <p>Private Health Insurance Quote Simulator</p> </header>
