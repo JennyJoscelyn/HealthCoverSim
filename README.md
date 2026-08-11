@@ -1,16 +1,93 @@
-# React + Vite
+# HealthCoverSim
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Cloud-Based Health Insurance Quote Simulator
 
-Currently, two official plugins are available:
+HealthCoverSim is a cloud-based web application that allows users to enter health insurance requirements and receive an estimated private health insurance premium.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The application provides a simple interface for creating, viewing, editing and deleting saved insurance quotes.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Create health insurance quotes
+- Calculate estimated insurance premiums
+- Support for Single, Couple and Family cover
+- Hospital cover options
+- Extras cover options
+- Monthly and yearly payment options
+- Annual payment discount
+- Lifetime Health Cover loading
+- Input validation
+- Optional notes
+- View saved quotes
+- Edit existing quotes
+- Delete saved quotes
+- REST API backend
+- SQLite database
+- Cloud deployment
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+
+- React
+- Vite
+- JavaScript
+- HTML
+- CSS
+
+### Backend
+
+- Node.js
+- Express
+- CORS
+- better-sqlite3
+
+### Database
+
+- SQLite
+
+### Development and Deployment
+
+- Git
+- GitHub
+- Render
+- Ubuntu
+- VMware
+
+## Application Architecture
+
+```text
+User
+  |
+  v
+React / Vite Frontend
+  |
+  | HTTP REST API
+  v
+Express / Node.js Backend
+  |
+  v
+SQLite Database
+
+HealthCoverSim/
+│
+├── backend/
+│   ├── db.js
+│   ├── init.sql
+│   ├── server.js
+│   ├── package.json
+│   └── healthcoversim.db
+│
+├── public/
+│
+├── src/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+│
+├── .gitignore
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
